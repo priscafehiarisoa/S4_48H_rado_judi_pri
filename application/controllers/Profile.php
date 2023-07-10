@@ -9,7 +9,7 @@ class Profile extends CI_Controller
 
     }
     function index(){
-        $this->load->view('profile');
+        $this->load->view('profil');
     }
 
     function completion_profile(){
@@ -33,7 +33,7 @@ class Profile extends CI_Controller
         }
         else{
 
-            $this->load->view('profile',$errors);
+            $this->load->view('profil',$errors);
         }
 
     }

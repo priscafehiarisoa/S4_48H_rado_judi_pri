@@ -33,8 +33,8 @@ class Controller extends CI_Controller {
   		$this->load->view('profile');
   	}
 
-    public function objectif(){
-        $this->load->view('objectif');
+    public function completer(){
+        $this->load->view('completer_profile');
     }
 
 
@@ -47,8 +47,8 @@ class Controller extends CI_Controller {
         'password' => $this->input->post('password')
     );
     $this->news_model->insertion('users',$data1);
-		$this->session->set_userdata('user', $data1[$i]);
-    redirect(base_url('controller/objectif'));
+    $this->session->set_userdata('user', $data1);
+    redirect(base_url('Profile/index'));
   }
 
 
@@ -69,7 +69,7 @@ class Controller extends CI_Controller {
 		for($i = 0; $i<count($data); $i++){
 				if($this->input->post('email') == $data[$i]['email'] && $this->input->post('password') == $data[$i]['password']){
 						$this->session->set_userdata('user', $data[$i]);
-            $id = $data[$i]['id'];
+                        $id = $data[$i]['id'];
 						redirect(base_url('controller/welcome'));
 				}
 		}

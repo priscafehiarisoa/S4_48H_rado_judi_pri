@@ -15,12 +15,11 @@ class verifications extends CI_Model
         }
         else return 1;
     }
-    public function verifier_poids($poids){
-        if($poids<=0){
+    public function verifier_poids($poids)
+    {
+        if ($poids <= 0) {
             return -1;
-        }
-        else return 1;
+        } else return 1;
     }
-
 
 }
