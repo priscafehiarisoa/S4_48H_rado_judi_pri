@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$config['base_url'] = 'http://localhost/S4_48H_rado_judi_pri/';
+$config['base_url'] = 'http://localhost/S4_48H_rado_judi_pri/index.php';
 
 $config['index_page'] = 'index.php';
 
