@@ -35,4 +35,16 @@ class News_model extends CI_Model
       return $table;
     }
 
+    function selectFromTable($tableName) {
+        $CI =& get_instance();
+        $query = $CI->db->query("SELECT * FROM " . $tableName);
+
+        if ($query->num_rows() > 0) {
+            return $query->result(); // Renvoie un tableau d'objets contenant les résultats de la requête
+        } else {
+            return array(); // Renvoie un tableau vide si aucune donnée n'est trouvée
+        }
+    }
+
+
 }

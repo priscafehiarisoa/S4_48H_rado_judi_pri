@@ -46,7 +46,7 @@ class Controller extends CI_Controller {
         'email' => $this->input->post('email'),
         'password' => $this->input->post('password')
     );
-    $this->news_model->insertion('users',$data1);
+    $this->news_model->insertion('USER',$data1);
 		$this->session->set_userdata('user', $data1[$i]);
     redirect(base_url('controller/objectif'));
   }
