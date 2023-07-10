@@ -13,29 +13,10 @@
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
-<!DOCTYPE html>
-<html lang="en">
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="http://localhost/projet48h/assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="http://localhost/projet48h/assets/img/favicon.png">
-  <title>
-    Soft UI Dashboard by Creative Tim
-  </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  <!-- Nucleo Icons -->
-  <link href="http://localhost/projet48h/assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="http://localhost/projet48h/assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="http://localhost/projet48h/assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link id="pagestyle" href="http://localhost/projet48h/assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
-</head>
-
+include "inc/root.php"?>
 <body class="g-sidenav-show  bg-gray-100">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent mt-4">
@@ -55,8 +36,8 @@
           <li class="nav-item dropdown dropdown-hover mx-2">
             <a role="button" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center " id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
               Pages
-              <img src=" http://localhost/projet48h/assets/img/down-arrow-dark.svg  " alt="down-arrow" class="arrow ms-1 d-lg-block d-none">
-              <img src="http://localhost/projet48h/assets/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1 d-lg-none d-block">
+              <img src=" <?php echo base_url('/assets/img/down-arrow-dark.svg')?>  " alt="down-arrow" class="arrow ms-1 d-lg-block d-none">
+              <img src="<?php echo base_url('/assets/img/down-arrow-dark.svg')?>" alt="down-arrow" class="arrow ms-1 d-lg-none d-block">
             </a>
             <div class="dropdown-menu dropdown-menu-animation dropdown-xl p-3 border-radius-xl mt-0 mt-lg-3" aria-labelledby="dropdownMenuPages">
               <div class="row d-none d-lg-block">
