@@ -25,7 +25,7 @@ class News_model extends CI_Model
       $table = array();
       $i = 0;
       foreach ($result->result_array() as $row) {
-          $lists = array('id' => $row['id'],
+          $lists = array('iduser' => $row['iduser'],
                           'name' => $row['name'],
                           'email' => $row['email'],
                           'password' => $row['password']);
@@ -33,6 +33,25 @@ class News_model extends CI_Model
           $i++;
       }
       return $table;
+    }
+
+    public function login($email,$password){
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('email', $email);
+        $this->db->where('password', $password);
+        $result = $this->db->get();
+        $row = $result->row_array();
+        return $row;
+    }
+
+    public function selectuser($name){
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('name', $name);
+        $result = $this->db->get();
+        $row = $result->row_array();
+        return $row;
     }
 
 }

@@ -30,25 +30,36 @@ class Controller extends CI_Controller {
 
   /***Redirection vers la page profile**/
     public function welcome(){
-  		$this->load->view('profile');
+  		$this->load->view('welcome_message');
   	}
 
+    public function dashboard(){
+        $this->load->view('dashboard');
+    }
+
+    public function regimes(){
+        $this->load->view('regimes');
+    }
+
     public function completer(){
-        $this->load->view('completer_profile');
+        $this->load->view('profil');
     }
 
 
 /*** Inscription, Completion, Profil**/
    public function signup(){
     $this->load->model('news_model');
+    $admin = -1;
     $data1 = array(
         'name' => $this->input->post('name'),
         'email' => $this->input->post('email'),
-        'password' => $this->input->post('password')
+        'password' => $this->input->post('password'),
+        'admin' => $admin
     );
     $this->news_model->insertion('users',$data1);
-    $this->session->set_userdata('user', $data1);
-    redirect(base_url('Profile/index'));
+    $data = $this->news_model->selectuser($data1['name']);
+    $this->session->set_userdata('user', $data);
+    redirect(base_url('controller/completer'));
   }
 
 
@@ -65,14 +76,18 @@ class Controller extends CI_Controller {
   public function connection(){
 		$this->load->model('news_model');
 		$table = "users";
-		$data = $this->news_model->selectusers($table);
-		for($i = 0; $i<count($data); $i++){
-				if($this->input->post('email') == $data[$i]['email'] && $this->input->post('password') == $data[$i]['password']){
-						$this->session->set_userdata('user', $data[$i]);
-                        $id = $data[$i]['id'];
-						redirect(base_url('controller/welcome'));
-				}
-		}
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+		$data = $this->news_model->login($email,$password);
+        if($data != null){
+            if(intval($data['admin']) == 1){
+                $this->session->set_userdata('user', $data);
+                redirect(base_url('controller/dashboard'));
+            }else {
+                $this->session->set_userdata('user', $data);
+                redirect(base_url('controller/welcome'));
+            }
+        }
 		redirect(base_url('controller/index'));
 	}
 }
