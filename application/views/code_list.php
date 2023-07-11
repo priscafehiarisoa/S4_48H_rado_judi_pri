@@ -25,11 +25,11 @@ if(!isset($codes)){
         <div class="col-12 text-end mb-5 mt-3">
             <a class="btn bg-gradient-dark mb-0" href="<?php echo base_url('code/Code/index')?>"><i class="fas fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Ajouter un nouveau code</a>
         </div>
+        <div class="">
+            <h3 class="font-weight-bolder text-capitalize mb-3">liste des codes </h3>
+        </div>
         <div class="card mb-4">
-            <div class="card-header pb-0 ">
-                <h3>Liste des Codes </h3>
 
-            </div>
 
             <div class="card-body px-0 pt-0 pb-2">
                 <div class="table-responsive p-0">

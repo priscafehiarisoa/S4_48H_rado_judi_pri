@@ -4,6 +4,9 @@ include "inc/root.php";
 ?>
 <body>
 <div class="col-lg-8">
+    <div class="">
+        <h3 class="font-weight-bolder text-capitalize mb-3">Modifications</h3>
+    </div>
     <div class="row">
         <div class="col-xl-12 mb-xl-0 mb-2">
             <div class="card bg-transparent shadow-xl">

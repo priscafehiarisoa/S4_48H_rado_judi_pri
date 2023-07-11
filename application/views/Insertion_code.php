@@ -8,6 +8,9 @@ include "inc/root.php"?>
 <main class="main-content">
     <?php     include "inc/up_navbar.php";
 ?>
+    <div class="">
+        <h3 class="font-weight-bolder text-capitalize mb-3">code</h3>
+    </div>
     <div class="container">
         <form action="<?php echo isset($codeModif)?base_url('code/Code/update_code'):base_url('code/Code/enregistrer_code')?>" method="post">
 

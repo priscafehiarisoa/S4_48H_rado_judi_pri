@@ -1,28 +1,32 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="http://localhost/S4_48H_rado_judi_pri/assets/css/style.css">
-    <title>Document</title>
-</head>
+<?php include "inc/root.php" ?>
 <body>
-    <section>
-        <form action="<?php echo base_url('controller/saveObjectif'); ?>" method="post">
-            <div class="radio">
-
-                <input type="radio" name="objectif" id="augmenter" value="1">
-                <label class="profile" for="augmenter">Augmenter</label>
-
-                <input type="radio" name="objectif" id="reduire" value="-1">
-                <label class="profile" for="reduire">Reduire</label>
+<main class="main-content">
+    <div class="container p-5">
+        <div class="card offset-3 col-6">
+            <div class="card-header">
+                <h3 class="font-weight-bolder text-capitalize mb-3">veuillez completer votre profil</h3>
             </div>
-            <label for="cibles">Poids cible</label>
-            <input type="number" name="poids" id="cibles"><br/>
-            <input type="submit" value="Sauvegarder">
-        </form>
-    </section>
+            <section class="card-body">
+                <form action="<?php echo base_url('controller/saveObjectif'); ?>" method="post">
+                    <h4 class="text-primary"> Quel est votre objectif ? </h4>
+                    <div class="radio mt-5 mb-5">
+
+                        <input type="radio" name="objectif" id="augmenter" value="1">
+                        <label class="profile" for="augmenter">Augmenter votre poids ?</label>
+
+                        <input type="radio" name="objectif" id="reduire" value="-1">
+                        <label class="profile" for="reduire">Reduire réduire votre poids</label>
+                    </div>
+                    <div class="from-control">
+                        <label for="cibles">Poids cible</label>
+                        <input type="number"  class="form-control" name="poids" id="cibles"><br/>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Sauvegarder" class="btn btn-primary">
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</main>
 </body>
-</html>
