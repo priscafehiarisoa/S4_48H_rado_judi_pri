@@ -99,6 +99,7 @@ class Code extends CI_Controller
     }
 
     public function utiliser_un_code(){
+        session_start();
         $code=trim($_POST['code']);
         $erreurs=null;
         if($this->verif->verifier_code($code)!=1){
@@ -113,18 +114,17 @@ class Code extends CI_Controller
 
             if($code_source!=null){
                 $code_source=$code_source[0];
-                $table = "CODEVALIDEE";
+                $table = "CODEUTILISE";
                 $conditions = array(
-                    'idcode' => $code_source->IDCODE
+                    'idcode' => $code_source->IDCODE,
+                    'VALIDEE'=>1
                 );
                 $code_validé = $this->NM->selectFromTableConditions($table, $conditions);
 
                 if($code_validé!=null){
-                    print_r($code_validé);
                     $erreurs['erreur']="code déjà utilisé ";
                 }
                 else{
-                    print_r($code_validé);
 
                     date_default_timezone_set('Africa/Nairobi');
                     $currentDate = date('Y-m-d');
@@ -149,11 +149,21 @@ class Code extends CI_Controller
     }
 
     public function charger_page_code_list_used(){
+
+        $code['listecodes']=$this->NM->liste_code_utilise();
+        $this->load->view('code_list_used',$code);
+
+    }
+
+    public function valider_code($idcode,$iduser){
         $table="CODEUTILISE";
         $data=array(
-            ''
-        )
-        $code=$this->NM->selectFromTableConditions()
+            'IDCODE'=>$idcode,
+            'IDUSER'=>$iduser,
+            'VALIDEE'=>1
+        );
+        $this->NM->modification($table,"IDCODE",$data);
+        $this->charger_page_code_list_used();
 
     }
 

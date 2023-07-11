@@ -107,5 +107,20 @@ class News_model extends CI_Model
             return array();
         }
     }
+    public function liste_code_utilise() {
+        $this->db->select('*');
+        $this->db->from('CODEUTILISE');
+        $this->db->join('CODE', 'CODEUTILISE.IDCODE = CODE.IDCODE');
+        $this->db->join('USER', 'USER.IDUSER = CODEUTILISE.IDUSER');
+        $this->db->where('VALIDEE', 0);
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return array(); // Retourne un tableau vide si aucune ligne trouvée
+        }
+
+    }
 
 }
