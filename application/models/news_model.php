@@ -49,7 +49,7 @@ class News_model extends CI_Model
 
     public function login($email,$password){
         $this->db->select('*');
-        $this->db->from('users');
+        $this->db->from('USER');
         $this->db->where('email', $email);
         $this->db->where('password', $password);
         $result = $this->db->get();
@@ -59,7 +59,7 @@ class News_model extends CI_Model
 
     public function selectuser($name){
         $this->db->select('*');
-        $this->db->from('users');
+        $this->db->from('user');
         $this->db->where('name', $name);
         $result = $this->db->get();
         $row = $result->row_array();

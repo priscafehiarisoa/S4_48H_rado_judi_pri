@@ -78,7 +78,7 @@ class Controller extends CI_Controller {
 /***Fonction de connexion**/
   public function connection(){
 		$this->load->model('news_model');
-		$table = "users";
+		$table = "USER";
         $email = $this->input->post('email');
         $password = $this->input->post('password');
 		$data = $this->news_model->login($email,$password);
