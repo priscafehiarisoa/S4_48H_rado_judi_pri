@@ -126,9 +126,12 @@ class Code extends CI_Controller
                 else{
                     print_r($code_validé);
 
+                    date_default_timezone_set('Africa/Nairobi');
+                    $currentDate = date('Y-m-d');
                     $data=array(
                         'IDUSER'=>$_SESSION['user']['IDUSER'],
-                        'idcode'=>$code_source->IDCODE
+                        'idcode'=>$code_source->IDCODE,
+                        'VALIDEE'=>0
                     );
                     $table='CODEUTILISE';
                     $this->NM->insertion($table,$data);

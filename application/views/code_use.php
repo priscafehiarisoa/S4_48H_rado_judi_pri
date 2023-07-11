@@ -18,6 +18,9 @@ if(!isset($codes)){
         <?php include "inc/up_navbar.php";
         ?>
 
+        <div class="">
+            <h3 class="font-weight-bolder text-capitalize mb-3">formulaire </h3>
+        </div>
         <section class="mb-6">
             <form action="<?php echo base_url('code/Code/utiliser_un_code')?>" method="post">
                <div class="card">
