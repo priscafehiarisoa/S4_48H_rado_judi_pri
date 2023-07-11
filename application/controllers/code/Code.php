@@ -149,8 +149,11 @@ class Code extends CI_Controller
     }
 
     public function charger_page_code_list_used(){
-        $unusedCode['listecodes']=$this->NM->selectCodesNonvalides();
-        $this->load->view('code_list_used',$unusedCode);
+        $table="CODEUTILISE";
+        $data=array(
+            ''
+        )
+        $code=$this->NM->selectFromTableConditions()
 
     }
 
