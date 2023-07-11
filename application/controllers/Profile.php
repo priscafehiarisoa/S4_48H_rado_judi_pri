@@ -13,14 +13,21 @@ class Profile extends CI_Controller
     }
 
     function completion_profile(){
-        $age=$_POST['age'];
-        $poids=$_POST['poids'];
-        $taille=$_POST['taille'];
+        $age=$this->input->post('age');
+        $poids=$this->input->post('poids');
+        $taille=$this->input->post('taille');
         $errors=null;
+        $this->load->model('verifications');
+        $this->load->model('news_model');
+        $data1 = array(
+            'iduser' => $_SESSION['user']['iduser'],
+            'age' => $age,
+            'poids' => $poids,
+            'taille' => $taille
+        );
 
         if($this->verif->verifier_age($age)==-1){
             $errors['age']="age invalide";
-
         }
         if($this->verif->verifier_taille($taille)==-1)
             $errors['taille']="taille invalide";
@@ -29,10 +36,10 @@ class Profile extends CI_Controller
             $errors['poids']="poids invalide";
 
         if($errors==null){
-            print_r($errors);
+            $this->news_model->insertion('profiluser',$data1);
+            $this->load->view('objectif');
         }
         else{
-
             $this->load->view('profil',$errors);
         }
 
