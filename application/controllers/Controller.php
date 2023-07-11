@@ -49,6 +49,24 @@ class Controller extends CI_Controller {
         $this->load->view('profil');
     }
 
+    /***Fonction de connexion**/
+    public function connection(){
+        $this->load->model('news_model');
+        $table = "users";
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+        $data = $this->news_model->login($email,$password);
+        if($data != null){
+            if(intval($data['admin']) == 1){
+                $this->session->set_userdata('user', $data);
+                redirect(base_url('controller/dashboard'));
+            }else {
+                $this->session->set_userdata('user', $data);
+                redirect(base_url('controller/welcome'));
+            }
+        }
+        redirect(base_url('controller/index'));
+    }
 
 /*** Inscription, Completion, Profil**/
    public function signup(){
@@ -58,6 +76,7 @@ class Controller extends CI_Controller {
         'name' => $this->input->post('name'),
         'email' => $this->input->post('email'),
         'password' => $this->input->post('password'),
+        'genre' => $this->input->post('genre'),
         'admin' => $admin
     );
     $this->news_model->insertion('users',$data1);
@@ -70,39 +89,22 @@ class Controller extends CI_Controller {
   public function saveObjectif(){
         $this->load->model('news_model');
         $data1 = array(
-            'objectif' => $this->input->post('objectif')
+            'objectif' => $this->input->post('objectif'),
+            'cible' => $this->input->post('cibles')
         );
         $this->news_model->insertion('objectif',$data1);
         redirect(base_url('controller/welcome'));
    }
 
-/***Fonction de connexion**/
-  public function connection(){
-		$this->load->model('news_model');
-		$table = "users";
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
-		$data = $this->news_model->login($email,$password);
-        if($data != null){
-            if(intval($data['admin']) == 1){
-                $this->session->set_userdata('user', $data);
-                redirect(base_url('controller/dashboard'));
-            }else {
-                $this->session->set_userdata('user', $data);
-                redirect(base_url('controller/welcome'));
-            }
-        }
-		redirect(base_url('controller/index'));
-	}
-
     /***Fonction CRUD regime**/
     public function saveRepas(){
         $this->load->model('news_model');
         $data1 = array(
-            'types' => $this->input->post('types'),
-            'nom' => $this->input->post('nom'),
-            'nombrecalories' => $this->input->post('nbcalories'),
-            'prix' => $this->input->post('prix')
+            'typerepas' => $this->input->post('types'),
+            'nomrepas' => $this->input->post('nom'),
+            'caloriedonee' => $this->input->post('nbcalories'),
+            'prix' => $this->input->post('prix'),
+            'composantrepas' => $this->input->post('composant')
         );
         $this->news_model->insertion('repas',$data1);
         redirect(base_url('controller/getAllrepas'));
@@ -132,10 +134,11 @@ class Controller extends CI_Controller {
         $this->load->model('news_model');
         $id = $this->input->post('idrepas');
         $data1 = array(
-            'types' => $this->input->post('types'),
-            'nom' => $this->input->post('nom'),
-            'nombrecalories' => $this->input->post('nbcalories'),
-            'prix' => $this->input->post('prix')
+            'typerepas' => $this->input->post('types'),
+            'nomrepas' => $this->input->post('nom'),
+            'caloriedonee' => $this->input->post('nbcalories'),
+            'prix' => $this->input->post('prix'),
+            'composantrepas' => $this->input->post('composant')
         );
         $this->news_model->modification('repas','idrepas',$id,$data1);
         redirect(base_url('controller/getAllrepas'));
@@ -145,8 +148,8 @@ class Controller extends CI_Controller {
     public function saveExercice(){
         $this->load->model('news_model');
         $data1 = array(
-            'nom' => $this->input->post('nom'),
-            'depensecalories' => $this->input->post('dpcalories')
+            'nomrepas' => $this->input->post('nom'),
+            'caloriedepensee' => $this->input->post('dpcalories')
         );
         $this->news_model->insertion('exercice',$data1);
         redirect(base_url('controller/getAllexercice'));
@@ -176,8 +179,8 @@ class Controller extends CI_Controller {
         $this->load->model('news_model');
         $id = $this->input->post('idexercice');
         $data1 = array(
-            'nom' => $this->input->post('nom'),
-            'depensecalories' => $this->input->post('dpcalories')
+            'nomrepas' => $this->input->post('nom'),
+            'caloriedepensee' => $this->input->post('dpcalories')
         );
         $this->news_model->modification('exercice','idexercice',$id,$data1);
         redirect(base_url('controller/getAllexercice'));

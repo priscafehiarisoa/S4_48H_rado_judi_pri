@@ -344,17 +344,34 @@ include "inc/root.php";
                             <div class="overflow-hidden position-relative border-radius-xl" style="background-image: url('../assets/img/curved-images/curved14.jpg');">
                                 <span class="mask bg-gradient-dark"></span>
                                 <div class="card-header">
-                                    Ajout exercice
+                                    Ajout repas
                                 </div>
                                 <div class="card-body position-relative z-index-1 p-3">
-                                    <form action="<?php echo base_url('controller/saveExercice'); ?>" method="post">
+                                    <form action="<?php echo base_url('controller/saveRepas'); ?>" method="post">
+                                        <div class="form-group">
+                                            <label for="types">Types</label>
+                                            <input class="col-xl-12 mb-xl-0 mb-2" type="text" name="types" id="types">
+                                        </div>
                                         <div class="form-group">
                                             <label for="nom">Nom</label>
                                             <input class="col-xl-12 mb-xl-0 mb-2" type="text" name="nom" id="nom">
                                         </div>
                                         <div class="form-group">
-                                            <label for="dpcalories">Nombre calories</label>
-                                            <input class="col-xl-12 mb-xl-0 mb-2" type="number" name="dpcalories" id="dpcalories">
+                                            <label for="nbcalories">Nombre calories</label>
+                                            <input class="col-xl-12 mb-xl-0 mb-2" type="number" name="nbcalories" id="nbcalories">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prix">Prix</label>
+                                            <input class="col-xl-12 mb-xl-0 mb-2" type="number" name="prix" id="prix">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="composant">Composant</label>
+                                            <select class="col-xl-12 mb-xl-0 mb-2" name="composant" id="composant">
+                                                <option value="3">Viande</option>
+                                                <option value="2">Poisson</option>
+                                                <option value="1">Poulet</option>
+                                                <option value="0">Autres</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <input type="submit" value="valider" class="btn btn-primary">
@@ -443,15 +460,17 @@ include "inc/root.php";
                     </div>
                     <div class="card-body pt-4 p-3">
                         <ul class="list-group">
-                            <?php for($i = 0; $i < count($exercice); $i++) { ?>
+                            <?php for($i = 0; $i < count($repas); $i++) { ?>
                                 <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                                     <div class="d-flex flex-column">
-                                        <h6 class="mb-3 text-sm"><?php echo $exercice[$i]['nomexercice'] ;?></h6>
-                                        <span class="mb-2 text-xs">Calories<span class="text-dark ms-sm-2 font-weight-bold"><?php echo $exercice[$i]['depensecalories'] ;?></span>
+                                        <h6 class="mb-3 text-sm"><?php echo $repas[$i]['nom'] ;?></h6>
+                                        <span class="mb-2 text-xs">Type<span class="text-dark font-weight-bold ms-sm-2"><?php echo $repas[$i]['types'] ;?></span></span>
+                                        <span class="mb-2 text-xs">Calories<span class="text-dark ms-sm-2 font-weight-bold"><?php echo $repas[$i]['nombrecalories'] ;?></span>
+                                        <span class="text-xs">Prix<span class="text-dark ms-sm-2 font-weight-bold"><?php echo $repas[$i]['prix'] ;?></span></span>
                                     </div>
                                     <div class="ms-auto text-end">
-                                        <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="<?php echo base_url('controller/deleteexercice'); ?>?idexercice=<?php echo $exercice[$i]['idexercice'] ;?>"><i class="far fa-trash-alt me-2"></i>Delete</a>
-                                        <a class="btn btn-link text-dark px-3 mb-0" href="<?php echo base_url('controller/modifexercice'); ?>?idexercice=<?php echo $exercice[$i]['idexercice'] ;?>"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
+                                        <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="<?php echo base_url('controller/deleterepas'); ?>?idrepas=<?php echo $repas[$i]['idrepas'] ;?>"><i class="far fa-trash-alt me-2"></i>Delete</a>
+                                        <a class="btn btn-link text-dark px-3 mb-0" href="<?php echo base_url('controller/modifrepas'); ?>?idrepas=<?php echo $repas[$i]['idrepas'] ;?>"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
                                     </div>
                                 </li>
                             <?php } ?>
@@ -672,4 +691,3 @@ include "inc/root.php";
 </body>
 
 </html>
-

@@ -22,4 +22,11 @@ class verifications extends CI_Model
         } else return 1;
     }
 
+    public function differencePoidscibles($objectif,$poids,$cible){
+        if($objectif == 1){
+            if($poids >= $cible){
+                return false;
+            }
+        }
+    }
 }

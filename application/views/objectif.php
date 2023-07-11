@@ -11,6 +11,7 @@
 <body>
     <section>
         <form action="<?php echo base_url('controller/saveObjectif'); ?>" method="post">
+            <input type="hidden" name="poids" value="<?php echo $poids; ?>">
             <div class="radio">
 
                 <input type="radio" name="objectif" id="augmenter" value="1">

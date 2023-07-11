@@ -37,7 +37,7 @@ class Profile extends CI_Controller
 
         if($errors==null){
             $this->news_model->insertion('profiluser',$data1);
-            $this->load->view('objectif');
+            $this->load->view('objectif',$data1);
         }
         else{
             $this->load->view('profil',$errors);
