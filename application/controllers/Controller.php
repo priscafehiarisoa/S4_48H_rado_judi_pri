@@ -88,32 +88,24 @@ class Controller extends CI_Controller {
 
   public function saveObjectif(){
         $this->load->model('news_model');
+        $this->load->model('verification');
+        $objectif = $this->input->post('objectif');
+        $cible = $this->input->post('cibles');
+        $poids = $this->input->post('poids');
         $data1 = array(
-            'objectif' => $this->input->post('objectif'),
-            'cible' => $this->input->post('cibles')
+            'objectif' => $objectif,
+            'cible' => $cible
         );
-        $this->news_model->insertion('objectif',$data1);
-        redirect(base_url('controller/welcome'));
-   }
-
-/***Fonction de connexion**/
-  public function connection(){
-		$this->load->model('news_model');
-		$table = "USER";
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
-		$data = $this->news_model->login($email,$password);
-        if($data != null){
-            if(intval($data['admin']) == 1){
-                $this->session->set_userdata('user', $data);
-                redirect(base_url('controller/dashboard'));
-            }else {
-                $this->session->set_userdata('user', $data);
-                redirect(base_url('controller/welcome'));
-            }
+        if($this->verification->differencePoidscibles($objectif,$cible,$poids)){
+            $this->news_model->insertion('objectif',$data1);
+            redirect(base_url('controller/welcome'));
+        } else {
+            $data1['poids'] = $poids;
+            $data1['erreur'] = "poids non validee";
+            $this->load->view('objectif',$data1);
         }
-		redirect(base_url('controller/index'));
-	}
+
+   }
 
     /***Fonction CRUD regime**/
     public function saveRepas(){
@@ -168,7 +160,7 @@ class Controller extends CI_Controller {
         $this->load->model('news_model');
         $data1 = array(
             'nomrepas' => $this->input->post('nom'),
-            'caloriedepensee' => $this->input->post('dpcalories')
+            'caloriedepensee' => $this->input->post('dpcalories'),
             'NOMEXERCICE' => $this->input->post('nom'),
             'CALORIEDEPENSEE' => $this->input->post('dpcalories')
         );

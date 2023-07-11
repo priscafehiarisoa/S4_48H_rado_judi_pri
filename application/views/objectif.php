@@ -1,4 +1,6 @@
-<?php include "inc/root.php" ?>
+<?php
+include "inc/root.php"
+?>
 <body>
 <main class="main-content">
     <div class="container p-5">
@@ -25,6 +27,9 @@
                         <label for="cibles">Poids cible</label>
                         <input type="number"  class="form-control" name="poids" id="cibles"><br/>
                     </div>
+                    <?php if( isset($erreur)){?>
+                        <p><?php echo $erreur; ?></p>
+                    <?php }?>
                     <div class="form-group">
                         <input type="submit" value="Sauvegarder" class="btn btn-primary">
                     </div>
