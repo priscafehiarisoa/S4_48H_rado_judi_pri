@@ -146,8 +146,8 @@ class Controller extends CI_Controller {
     public function saveExercice(){
         $this->load->model('news_model');
         $data1 = array(
-            'nom' => $this->input->post('nom'),
-            'depensecalories' => $this->input->post('dpcalories')
+            'NOMEXERCICE' => $this->input->post('nom'),
+            'CALORIEDEPENSEE' => $this->input->post('dpcalories')
         );
         $this->news_model->insertion('exercice',$data1);
         redirect(base_url('controller/getAllexercice'));
