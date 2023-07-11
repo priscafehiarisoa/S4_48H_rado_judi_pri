@@ -1309,9 +1309,9 @@
                   <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon" name="password">
                 </div>
                   <div class="mb-3">
-                      <input type="radio" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="email-addon" name="genre" id="masculin" value="1">
+                      <input type="radio" class="form-check" placeholder="Name" aria-label="Name" aria-describedby="email-addon" name="genre" id="masculin" value="1">
                       <label for="masculin">Masculin</label>
-                      <input type="radio" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="email-addon" name="genre" id="feminin" value="2">
+                      <input type="radio" class="form-check" placeholder="Name" aria-label="Name" aria-describedby="email-addon" name="genre" id="feminin" value="2">
                       <label for="feminin">Feminin</label>
                   </div>
                 <div class="text-center">

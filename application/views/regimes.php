@@ -463,7 +463,7 @@ include "inc/root.php";
                             <?php for($i = 0; $i < count($repas); $i++) { ?>
                                 <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                                     <div class="d-flex flex-column">
-                                        <h6 class="mb-3 text-sm"><?php echo $repas[$i]['nom'] ;?></h6>
+                                        <h6 class="mb-3 text-sm"><?php echo $repas[$i]['nomrepas'] ;?></h6>
                                         <span class="mb-2 text-xs">Type<span class="text-dark font-weight-bold ms-sm-2"><?php echo $repas[$i]['types'] ;?></span></span>
                                         <span class="mb-2 text-xs">Calories<span class="text-dark ms-sm-2 font-weight-bold"><?php echo $repas[$i]['nombrecalories'] ;?></span>
                                         <span class="text-xs">Prix<span class="text-dark ms-sm-2 font-weight-bold"><?php echo $repas[$i]['prix'] ;?></span></span>

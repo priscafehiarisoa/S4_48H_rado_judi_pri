@@ -20,7 +20,7 @@ class Profile extends CI_Controller
         $this->load->model('verifications');
         $this->load->model('news_model');
         $data1 = array(
-            'iduser' => $_SESSION['user']['iduser'],
+            'iduser' => $_SESSION['user']['IDUSER'],
             'age' => $age,
             'poids' => $poids,
             'taille' => $taille
@@ -36,7 +36,7 @@ class Profile extends CI_Controller
             $errors['poids']="poids invalide";
 
         if($errors==null){
-            $this->news_model->insertion('profiluser',$data1);
+            $this->news_model->insertion('profil',$data1);
             $this->load->view('objectif',$data1);
         }
         else{

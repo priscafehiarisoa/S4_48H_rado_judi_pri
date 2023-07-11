@@ -79,7 +79,7 @@ class Controller extends CI_Controller {
         'genre' => $this->input->post('genre'),
         'admin' => $admin
     );
-    $this->news_model->insertion('users',$data1);
+    $this->news_model->insertion('user',$data1);
     $data = $this->news_model->selectuser($data1['name']);
     $this->session->set_userdata('user', $data);
     redirect(base_url('controller/completer'));
