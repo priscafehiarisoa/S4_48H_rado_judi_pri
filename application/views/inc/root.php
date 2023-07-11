@@ -14,7 +14,6 @@
     <!-- Nucleo Icons -->
     <link href="<?php echo $this->config->item('my_variable')."/assets/css/nucleo-icons.css"?>" rel="stylesheet" />
     <link href="<?php echo $this->config->item('my_variable')."/assets/css/nucleo-svg.css"?>" rel="stylesheet" />
-<!--    <link href="--><?php //echo $this->config->item('my_variable')."/assets/css/style.css"?><!--" rel="stylesheet" />-->
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="<?php echo $this->config->item('my_variable')."/assets/css/nucleo-svg.css"?>" rel="stylesheet" />

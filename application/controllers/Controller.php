@@ -88,7 +88,7 @@ class Controller extends CI_Controller {
 
   public function saveObjectif(){
         $this->load->model('news_model');
-        $this->load->model('verification');
+        $this->load->model('verifications');
         $objectif = $this->input->post('objectif');
         $cible = $this->input->post('cibles');
         $poids = $this->input->post('poids');
@@ -96,7 +96,7 @@ class Controller extends CI_Controller {
             'objectif' => $objectif,
             'cible' => $cible
         );
-        if($this->verification->differencePoidscibles($objectif,$cible,$poids)){
+        if($this->verifications->differencePoidscibles($objectif,$cible,$poids)){
             $this->news_model->insertion('objectif',$data1);
             redirect(base_url('controller/welcome'));
         } else {

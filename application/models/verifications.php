@@ -38,11 +38,11 @@ class verifications extends CI_Model
 
     public function differencePoidscibles($objectif,$poids,$cible){
         if($objectif == 1){
-            if($poids >= $cible){
+            if($poids <= $cible){
                 return false;
             }
         }else if($objectif == -1){
-            if($poids <= $cible){
+            if($poids >= $cible){
                 return false;
             }
         }
