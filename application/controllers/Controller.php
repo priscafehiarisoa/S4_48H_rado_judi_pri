@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Controller extends CI_Controller {
-
 	/**
 	 * Index Page for this controller.
 	 *
@@ -70,6 +69,7 @@ class Controller extends CI_Controller {
 
 /*** Inscription, Completion, Profil**/
    public function signup(){
+       session_start();
     $this->load->model('news_model');
     $admin = -1;
     $data1 = array(
@@ -81,7 +81,7 @@ class Controller extends CI_Controller {
     );
     $this->news_model->insertion('user',$data1);
     $data = $this->news_model->selectuser($data1['name']);
-    $this->session->set_userdata('user', $data);
+    $_SESSION['user'] = $data;
     redirect(base_url('controller/completer'));
   }
 
@@ -200,12 +200,14 @@ class Controller extends CI_Controller {
     }
 
     public function deconnectAdmin(){
-        $this->session->unset_userdata('admin');
+        session_start();
+        unset($_SESSION['admin']);
         redirect(base_url('controller/index'));
     }
 
     public function deconnectClient(){
-        $this->session->unset_userdata('user');
+        session_start();
+        unset($_SESSION['user']);
         redirect(base_url('controller/index'));
     }
 }
