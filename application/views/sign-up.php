@@ -3,6 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 include "inc/root.php"?>
+<body class="g-sidenav-show  bg-gray-100">
 
   <section class="min-vh-100 mb-8">
     <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('http://localhost/projet48h/assets/img/curved-images/curved14.jpg');">
