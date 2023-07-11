@@ -1,0 +1,29 @@
+.radio{
+    width:400px;
+    height: 200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 5px;
+}
+form{
+    width:400px;
+    margin: auto;
+}
+input[type="radio"]{
+    display: none;
+}
+label.profile{
+    position: relative;
+    color: #01cc65;
+    font-size: 20px;
+    border: 2px solid #01cc65;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+}
+input[type="radio"]:checked+label.profile{
+    background-color: #01cc65;
+    color: whitesmoke;
+}

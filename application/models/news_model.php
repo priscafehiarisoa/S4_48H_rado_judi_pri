@@ -75,6 +75,7 @@ class News_model extends CI_Model
 
     public function login($email,$password){
         $this->db->select('*');
+        $this->db->from('user');
         $this->db->from('USER');
         $this->db->where('email', $email);
         $this->db->where('password', $password);

@@ -1,4 +1,6 @@
-<?php include "inc/root.php" ?>
+<?php
+include "inc/root.php"
+?>
 <body>
 <main class="main-content">
     <div class="container p-5">
@@ -10,6 +12,10 @@
                 <form action="<?php echo base_url('controller/saveObjectif'); ?>" method="post">
                     <h4 class="text-primary"> Quel est votre objectif ? </h4>
                     <div class="radio mt-5 mb-5">
+    <section>
+        <form action="<?php echo base_url('controller/saveObjectif'); ?>" method="post">
+            <input type="hidden" name="poids" value="<?php echo $poids; ?>">
+            <div class="radio">
 
                         <input type="radio" name="objectif" id="augmenter" value="1">
                         <label class="profile" for="augmenter">Augmenter votre poids ?</label>
@@ -21,6 +27,9 @@
                         <label for="cibles">Poids cible</label>
                         <input type="number"  class="form-control" name="poids" id="cibles"><br/>
                     </div>
+                    <?php if( isset($erreur)){?>
+                        <p><?php echo $erreur; ?></p>
+                    <?php }?>
                     <div class="form-group">
                         <input type="submit" value="Sauvegarder" class="btn btn-primary">
                     </div>

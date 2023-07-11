@@ -79,12 +79,12 @@ include "inc/root.php"?>
                 <div class="mb-3">
                   <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon" name="password">
                 </div>
-                <div class="form-check form-check-info text-left">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-                  <label class="form-check-label" for="flexCheckDefault">
-                    I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms and Conditions</a>
-                  </label>
-                </div>
+                  <div class="mb-3">
+                      <input type="radio" class="form-check" placeholder="Name" aria-label="Name" aria-describedby="email-addon" name="genre" id="masculin" value="1">
+                      <label for="masculin">Masculin</label>
+                      <input type="radio" class="form-check" placeholder="Name" aria-label="Name" aria-describedby="email-addon" name="genre" id="feminin" value="2">
+                      <label for="feminin">Feminin</label>
+                  </div>
                 <div class="text-center">
                   <input type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2" value="Sign up">
                 </div>
