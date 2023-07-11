@@ -10,7 +10,7 @@ if(isset($errors)) echo "mety ";
             veuillez completer votre profil
         </div>
         <div class="card-body">
-            <form action="<?php echo site_url('Profile/completion_profile')?>" method="post">
+            <form action="<?php echo base_url('Profile/completion_profile')?>" method="post">
                 <div class="form-group">
                     <label for="age"> age </label>
                     <input type="number" name="age" class="form-control" id="age">

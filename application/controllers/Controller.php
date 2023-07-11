@@ -58,8 +58,6 @@ class Controller extends CI_Controller {
     );
     $this->news_model->insertion('USER',$data1);
 		$this->session->set_userdata('user', $data1[$i]);
-    redirect(base_url('controller/objectif'));
-    $this->news_model->insertion('users',$data1);
     $data = $this->news_model->selectuser($data1['name']);
     $this->session->set_userdata('user', $data);
     redirect(base_url('controller/completer'));

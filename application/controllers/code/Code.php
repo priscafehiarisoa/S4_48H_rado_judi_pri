@@ -115,14 +115,24 @@ class Code extends CI_Controller
                 $code_source=$code_source[0];
                 $table = "CODEVALIDEE";
                 $conditions = array(
-                    'idcode' => $code_source[0]->IDCODE
+                    'idcode' => $code_source->IDCODE
                 );
                 $code_validé = $this->NM->selectFromTableConditions($table, $conditions);
 
                 if($code_validé!=null){
+                    print_r($code_validé);
                     $erreurs['erreur']="code déjà utilisé ";
                 }
-                echo "session".$_SESSION['usera'];
+                else{
+                    print_r($code_validé);
+
+                    $data=array(
+                        'IDUSER'=>$_SESSION['user']['IDUSER'],
+                        'idcode'=>$code_source->IDCODE
+                    );
+                    $table='CODEUTILISE';
+                    $this->NM->insertion($table,$data);
+                }
 
             }
             else{
@@ -133,7 +143,11 @@ class Code extends CI_Controller
         $erreurs['codes']=$this->NM->selectFromTable($table);
         $this->load->view('code_use',$erreurs);
 
+    }
 
+    public function charger_page_code_list_used(){
+        $unusedCode['listecodes']=$this->NM->selectCodesNonvalides();
+        $this->load->view('code_list_used',$unusedCode);
 
     }
 

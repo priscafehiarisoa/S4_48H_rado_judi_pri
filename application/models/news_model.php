@@ -74,4 +74,19 @@ class News_model extends CI_Model
         return $row;
     }
 
+    public function selectCodesNonvalides()
+    {
+        $this->db->select('*');
+        $this->db->from('CODEUTILISE');
+        $this->db->join('CODE C', 'C.IDCODE = CODEUTILISE.IDCODE');
+        $this->db->where('CODEUTILISE.IDCODE NOT IN (SELECT IDCODE FROM CODEVALIDEE)', NULL, FALSE);
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return array();
+        }
+    }
+
 }
