@@ -7,13 +7,13 @@ class News_model extends CI_Model
       $this->db->insert($table,$data);
   }
 
-  public function modification($table,$id,$data,$idname){
+  public function modification($table,$idname,$id,$data){
       $this->db->where($idname,$id);
       $this->db->update($table,$data);
   }
 
-  public function supression($table,$id){
-      $this->db->where('id',$id);
+  public function supression($table,$idname,$id){
+      $this->db->where($idname,$id);
       $this->db->delete($table);
   }
   public function delete($table,$id,$idname){
@@ -21,22 +21,11 @@ class News_model extends CI_Model
       $this->db->delete($table);
   }
 /***Requete pour prendre tous les elements du tableau entreprises**/
-  public function selectusers($table){
+  public function select($table){
       $this->db->select('*');
       $this->db->from($table);
-      $result = $this->db->get();
-
-      $table = array();
-      $i = 0;
-      foreach ($result->result_array() as $row) {
-          $lists = array('iduser' => $row['iduser'],
-                          'name' => $row['name'],
-                          'email' => $row['email'],
-                          'password' => $row['password']);
-          $table[$i] = $lists;
-          $i++;
-      }
-      return $table;
+      $result = $this->db->get()->result_array();
+      return $result;
     }
 
     function selectFromTable($tableName) {

@@ -93,4 +93,50 @@ class Controller extends CI_Controller {
         }
 		redirect(base_url('controller/index'));
 	}
+
+    /***Fonction CRUD regime**/
+    public function saveRepas(){
+        $this->load->model('news_model');
+        $data1 = array(
+            'types' => $this->input->post('types'),
+            'nom' => $this->input->post('nom'),
+            'nombrecalories' => $this->input->post('nbcalories'),
+            'prix' => $this->input->post('prix')
+        );
+        $this->news_model->insertion('repas',$data1);
+        redirect(base_url('controller/getAllrepas'));
+    }
+
+    public function getAllrepas(){
+        $this->load->model('news_model');
+        $data = array();
+        $data['repas'] = $this->news_model->select('repas');
+        $this->load->view('regimes',$data);
+    }
+
+    public function modifrepas(){
+        $id = array();
+        $id['idrepas'] = $this->input->get('idrepas');
+        $this->load->view('modifRepas',$id);
+    }
+
+    public function deleterepas(){
+        $id = $this->input->get('idrepas');
+        $this->load->model('news_model');
+        $this->news_model->supression('repas','idrepas',$id);
+        redirect(base_url('controller/getAllrepas'));
+    }
+
+    public function changeRepas(){
+        $this->load->model('news_model');
+        $id = $this->input->post('idrepas');
+        $data1 = array(
+            'types' => $this->input->post('types'),
+            'nom' => $this->input->post('nom'),
+            'nombrecalories' => $this->input->post('nbcalories'),
+            'prix' => $this->input->post('prix')
+        );
+        $this->news_model->modification('repas','idrepas',$id,$data1);
+        redirect(base_url('controller/getAllrepas'));
+    }
 }
