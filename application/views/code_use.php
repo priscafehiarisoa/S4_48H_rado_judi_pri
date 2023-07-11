@@ -25,7 +25,7 @@ if(!isset($codes)){
             <form action="<?php echo base_url('code/Code/utiliser_un_code')?>" method="post">
                <div class="card">
                    <div class="card-header">
-                       <h3>utiliser un code</h3>
+                       <h5>utiliser un code</h5>
                    </div>
                    <div class="card-body">
                        <div class="row">
@@ -48,7 +48,7 @@ if(!isset($codes)){
 
         <div class="card mb-4">
             <div class="card-header pb-0 ">
-                <h3>Liste des Codes </h3>
+                <h5>Liste des Codes </h5>
 
             </div>
 
