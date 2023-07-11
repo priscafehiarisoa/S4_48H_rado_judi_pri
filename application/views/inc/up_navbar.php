@@ -21,7 +21,7 @@
             </li>
 
             <li class="nav-item px-3 d-flex align-items-center">
-                <a href="javascript:;" class="nav-link p-0 text-body">
+                <a href="<?php echo base_url('controller/deconnectClient');?>" class="nav-link p-0 text-body">
                     <i class="fa fa-sign-out fixed-plugin-button-nav cursor-pointer" aria-hidden="true"></i>
                 </a>
             </li>

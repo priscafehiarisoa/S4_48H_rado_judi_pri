@@ -10,14 +10,20 @@ if(!isset($codes)){
 
 ?>
 <body>
-<?php include_once "inc/navbar.php";?>
+
+<?
+?>
 
 
 <main class="main-content mt-0 p-5">
     <section>
         <?php include "inc/up_navbar.php";
         ?>
-
+        <div class="row">
+            <div class="col-12 text-end mb-5 mt-3">
+                <a class="btn bg-gradient-dark mb-0" href="<?php echo base_url('Controller/welcome')?>"><i class="fas fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;utiliser un code</a>
+            </div>
+        </div>
         <div class="">
             <h3 class="font-weight-bolder text-capitalize mb-3">formulaire </h3>
         </div>

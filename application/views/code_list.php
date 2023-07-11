@@ -10,7 +10,7 @@ if(!isset($codes)){
 
 ?>
 <body>
-<?php include_once "inc/navbar.php";?>
+<?php include_once "inc/navbarClient.php";?>
 
 
 <main class="main-content mt-0 p-5">

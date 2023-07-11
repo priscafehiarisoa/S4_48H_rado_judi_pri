@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 include "inc/root.php";
 ?>
 <body>
-<?php include "inc/navbar.php"?>
+<?php include "inc/navbarClient.php" ?>
 <main class="main-content">
 
     <div class="container">

@@ -2,6 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Controller extends CI_Controller {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('verifications','verif');
+        $this->load->model('news_model','NM');
+
+    }
 
 	/**
 	 * Index Page for this controller.
@@ -30,7 +37,23 @@ class Controller extends CI_Controller {
 
   /***Redirection vers la page profile**/
     public function welcome(){
-  		$this->load->view('welcome_message');
+        session_start();
+        $this->load->model('baseModel/ObjectifModel');
+        $user['calorie'] = $this->ObjectifModel->getCalorieCible($_SESSION['user']['IDUSER']);
+        $us=$_SESSION['user'];
+        $user['user']=$us;
+        //maka ny compte client
+        $table="COMPTEUSER";
+        $conditions=array(
+            'IDUSER'=>$us['IDUSER'],
+        );
+        $compte=$this->NM->selectFromTableConditions($table,$conditions);
+        $io=0;
+        for ($i = 0; $i < count($compte); $i++) {
+            $io+=$compte[$i]->MONTANT;
+        }
+        $user['compte']=$io;
+        $this->load->view('profile_client',$user);
   	}
 
     public function dashboard(){
@@ -51,17 +74,18 @@ class Controller extends CI_Controller {
 
     /***Fonction de connexion**/
     public function connection(){
+        session_start();
         $this->load->model('news_model');
         $table = "users";
         $email = $this->input->post('email');
         $password = $this->input->post('password');
         $data = $this->news_model->login($email,$password);
         if($data != null){
-            if(intval($data['admin']) == 1){
-                $this->session->set_userdata('admin', $data);
+            if(intval($data['ADMIN']) == 1){
+                $_SESSION['admin'] = $data;
                 redirect(base_url('controller/dashboard'));
             }else {
-                $this->session->set_userdata('user', $data);
+                $_SESSION['user'] = $data;
                 redirect(base_url('controller/welcome'));
             }
         }
@@ -88,6 +112,7 @@ class Controller extends CI_Controller {
 
 
   public function saveObjectif(){
+       session_start();
         $this->load->model('news_model');
         $this->load->model('verifications');
         $objectif = $this->input->post('objectif');
@@ -99,6 +124,13 @@ class Controller extends CI_Controller {
         );
         if($this->verifications->differencePoidscibles($objectif,$cible,$poids)){
             $this->news_model->insertion('objectif',$data1);
+            $idobjectif = $this->news_model->selectMaxIdobjectif();
+            $data1 = array(
+                'IDOBJECTIF' => $objectif,
+                'IDUSER' =>$_SESSION['user']['IDUSER'],
+                'POIDSCIBLE' => $cible
+            );
+            $this->news_model->insertion('OBJECTIFUSER',$data1);
             redirect(base_url('controller/welcome'));
         } else {
             $data1['poids'] = $poids;
@@ -161,7 +193,7 @@ class Controller extends CI_Controller {
         $this->load->model('news_model');
         $data1 = array(
             'nomrepas' => $this->input->post('nom'),
-            'caloriedepensee' => $this->input->post('dpcalories'),
+            'CALORIEDEPENSE' => $this->input->post('dpcalories'),
             'NOMEXERCICE' => $this->input->post('nom'),
             'CALORIEDEPENSEE' => $this->input->post('dpcalories')
         );
@@ -210,5 +242,18 @@ class Controller extends CI_Controller {
         session_start();
         unset($_SESSION['user']);
         redirect(base_url('controller/index'));
+    }
+    public function sceance(){
+        $this->load->model('news_model');
+        $data = array();
+        $data['allExo'] = $this->news_model->select('EXERCICE');
+        $this->load->view('sceance',$data);
+    }
+
+    public function plats(){
+        $this->load->model('news_model');
+        $data = array();
+        $data['allRepas'] = $this->news_model->select('REPAS');
+        $this->load->view('plats',$data);
     }
 }

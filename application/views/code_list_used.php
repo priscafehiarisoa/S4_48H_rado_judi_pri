@@ -10,7 +10,7 @@ if(!isset($listecodes)){
 
 ?>
 <body>
-<?php include_once "inc/navbar.php";?>
+<?php include_once "inc/navbarClient.php";?>
 
 
 <main class="main-content mt-0 p-5">
@@ -41,6 +41,7 @@ if(!isset($listecodes)){
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">valeurs</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -59,11 +60,15 @@ if(!isset($listecodes)){
                                 <td class="align-middle text-center">
                                     <span class="text-secondary text-sm font-weight-bold"><?php echo $listecodes[$i]->VALEUR?></span>
                                 </td>
+
                                 <td class="align-middle text-center">
-                                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="<?php echo base_url('code/Code/effacer_code/'.$listecodes[$i]->IDCODE)?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete</a>
+                                    <span class="text-secondary text-sm font-weight-bold"><?php echo $listecodes[$i]->NAME?></span>
                                 </td>
                                 <td class="align-middle text-center">
-                                    <a class="btn btn-link text-dark px-3 mb-0" href="<?php echo base_url('code/Code/modifier_code/'.$listecodes[$i]->IDCODE)?>"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
+                                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="<?php echo base_url('code/Code/valider_code/'.$listecodes[$i]->IDCODE."/".$listecodes[$i]->IDUSER)?>"><i class="fas fa-check me-2" aria-hidden="true"></i>valider</a>
+                                </td>
+                                <td class="align-middle text-center">
+
                                 </td>
                             </tr>
                         <?php } ?>

@@ -75,7 +75,6 @@ class News_model extends CI_Model
 
     public function login($email,$password){
         $this->db->select('*');
-        $this->db->from('user');
         $this->db->from('USER');
         $this->db->where('email', $email);
         $this->db->where('password', $password);
@@ -86,7 +85,7 @@ class News_model extends CI_Model
 
     public function selectuser($name){
         $this->db->select('*');
-        $this->db->from('user');
+        $this->db->from('USER');
         $this->db->where('name', $name);
         $result = $this->db->get();
         $row = $result->row_array();
@@ -106,6 +105,29 @@ class News_model extends CI_Model
         } else {
             return array();
         }
+    }
+
+    public function selectMaxIdobjectif(){
+        $this->db->select('max(IDOBJECTIF)');
+        $this->db->from('OBJECTIF');
+        $result = $this->db->get();
+        $row = $result->row_array();
+        return $row;
+    }
+    public function liste_code_utilise() {
+        $this->db->select('*');
+        $this->db->from('CODEUTILISE');
+        $this->db->join('CODE', 'CODEUTILISE.IDCODE = CODE.IDCODE');
+        $this->db->join('USER', 'USER.IDUSER = CODEUTILISE.IDUSER');
+        $this->db->where('VALIDEE', 0);
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return array(); // Retourne un tableau vide si aucune ligne trouvée
+        }
+
     }
 
 }
