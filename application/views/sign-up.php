@@ -62,11 +62,7 @@ include "inc/root.php"?>
                   </svg>
                 </a>
               </div>
-              <div class="mt-2 position-relative text-center">
-                <p class="text-sm font-weight-bold mb-2 text-secondary text-border d-inline z-index-2 bg-white px-3">
-                  or
-                </p>
-              </div>
+
             </div>
             <div class="card-body">
               <form role="form text-left" method="post" action="<?php echo base_url('controller/signup'); ?>">
