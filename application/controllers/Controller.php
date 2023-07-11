@@ -42,6 +42,20 @@ class Controller extends CI_Controller {
         $this->load->view('dashboard',$data);
     }
 
+    public function sceance(){
+        $this->load->model('news_model');
+        $data = array();
+        $data['allExo'] = $this->news_model->select('EXERCICE');
+        $this->load->view('sceance',$data);
+    }
+
+    public function plats(){
+        $this->load->model('news_model');
+        $data = array();
+        $data['allRepas'] = $this->news_model->select('REPAS');
+        $this->load->view('plats',$data);
+    }
+
     public function regimes(){
         $this->load->view('regimes');
     }
@@ -74,11 +88,11 @@ class Controller extends CI_Controller {
     $this->load->model('news_model');
     $admin = -1;
     $data1 = array(
-        'name' => $this->input->post('name'),
-        'email' => $this->input->post('email'),
-        'password' => $this->input->post('password'),
-        'genre' => $this->input->post('genre'),
-        'admin' => $admin
+        'NAME' => $this->input->post('name'),
+        'EMAIL' => $this->input->post('email'),
+        'PASSWORD' => $this->input->post('password'),
+        'GENRE' => $this->input->post('genre'),
+        'ADMIN' => $admin
     );
     $this->news_model->insertion('user',$data1);
     $data = $this->news_model->selectuser($data1['name']);
@@ -94,8 +108,8 @@ class Controller extends CI_Controller {
         $cible = $this->input->post('cibles');
         $poids = $this->input->post('poids');
         $data1 = array(
-            'objectif' => $objectif,
-            'cible' => $cible
+            'OBJECTIF' => $objectif,
+            'CIBLE' => $cible
         );
         if($this->verifications->differencePoidscibles($objectif,$cible,$poids)){
             $this->news_model->insertion('objectif',$data1);
@@ -112,11 +126,11 @@ class Controller extends CI_Controller {
     public function saveRepas(){
         $this->load->model('news_model');
         $data1 = array(
-            'typerepas' => $this->input->post('types'),
-            'nomrepas' => $this->input->post('nom'),
-            'caloriedonee' => $this->input->post('nbcalories'),
-            'prix' => $this->input->post('prix'),
-            'composantrepas' => $this->input->post('composant')
+            'TYPEREPAS' => $this->input->post('types'),
+            'NOMREPAS' => $this->input->post('nom'),
+            'CALORIEDONEE' => $this->input->post('nbcalories'),
+            'PRIX' => $this->input->post('prix'),
+            'COMPOSANTREPAS' => $this->input->post('composant')
         );
         $this->news_model->insertion('repas',$data1);
         redirect(base_url('controller/getAllrepas'));
@@ -146,11 +160,11 @@ class Controller extends CI_Controller {
         $this->load->model('news_model');
         $id = $this->input->post('idrepas');
         $data1 = array(
-            'typerepas' => $this->input->post('types'),
-            'nomrepas' => $this->input->post('nom'),
-            'caloriedonee' => $this->input->post('nbcalories'),
-            'prix' => $this->input->post('prix'),
-            'composantrepas' => $this->input->post('composant')
+            'TYPEREPAS' => $this->input->post('types'),
+            'NOMREPAS' => $this->input->post('nom'),
+            'CALORIEDONEE' => $this->input->post('nbcalories'),
+            'PRIX' => $this->input->post('prix'),
+            'COMPOSANTREPAS' => $this->input->post('composant')
         );
         $this->news_model->modification('repas','idrepas',$id,$data1);
         redirect(base_url('controller/getAllrepas'));
@@ -160,8 +174,6 @@ class Controller extends CI_Controller {
     public function saveExercice(){
         $this->load->model('news_model');
         $data1 = array(
-            'nomrepas' => $this->input->post('nom'),
-            'caloriedepensee' => $this->input->post('dpcalories'),
             'NOMEXERCICE' => $this->input->post('nom'),
             'CALORIEDEPENSEE' => $this->input->post('dpcalories')
         );
@@ -193,8 +205,8 @@ class Controller extends CI_Controller {
         $this->load->model('news_model');
         $id = $this->input->post('idexercice');
         $data1 = array(
-            'nomrepas' => $this->input->post('nom'),
-            'caloriedepensee' => $this->input->post('dpcalories')
+            'NOMREPAS' => $this->input->post('nom'),
+            'CALORIEDEPENSEE' => $this->input->post('dpcalories')
         );
         $this->news_model->modification('exercice','idexercice',$id,$data1);
         redirect(base_url('controller/getAllexercice'));
