@@ -15,16 +15,33 @@ if(!isset($codes)){
 
 <main class="main-content mt-0 p-5">
     <section>
+        <?php include "inc/up_navbar.php";
+        ?>
+
+        <section class="mb-6">
+            <form action="<?php echo base_url('code/Code/utiliser_un_code')?>" method="post">
+               <div class="card">
+                   <div class="card-header">
+                       <h3>utiliser un code</h3>
+                   </div>
+                   <div class="card-body">
+                       <div class="row">
+                           <label for="code">code</label>
+
+                       <div class="col-6">
+                               <input type="text" name="code" id="code" class="form-control col-5" placeholder="12345678910112">
+                       </div>
+                       <div class="col-3">
+                           <input type="submit" value="utiliser le code" class="btn btn-outline-primary ">
+                       </div>
+                       </div>
+                   </div>
+               </div>
+            </form>
 
 
-    </section>
-    <section>
-<?php include "inc/up_navbar.php";
-?>
+        </section>
 
-        <div class="col-12 text-end mb-5 mt-3">
-            <a class="btn bg-gradient-dark mb-0" href="<?php echo base_url('code/Code/index')?>"><i class="fas fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Ajouter un nouveau code</a>
-        </div>
         <div class="card mb-4">
             <div class="card-header pb-0 ">
                 <h3>Liste des Codes </h3>
@@ -39,8 +56,7 @@ if(!isset($codes)){
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">id code</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">code</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">valeurs</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -59,12 +75,7 @@ if(!isset($codes)){
                                 <td class="align-middle text-center">
                                     <span class="text-secondary text-sm font-weight-bold"><?php echo $codes[$i]->VALEUR?></span>
                                 </td>
-                                <td class="align-middle text-center">
-                                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="<?php echo base_url('code/Code/effacer_code/'.$codes[$i]->IDCODE)?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete</a>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <a class="btn btn-link text-dark px-3 mb-0" href="<?php echo base_url('code/Code/modifier_code/'.$codes[$i]->IDCODE)?>"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                                </td>
+
                             </tr>
                         <?php } ?>
                         </tbody>

@@ -7,13 +7,17 @@ class News_model extends CI_Model
       $this->db->insert($table,$data);
   }
 
-  public function modification($table,$id,$data){
-      $this->db->where('id',$id);
+  public function modification($table,$id,$data,$idname){
+      $this->db->where($idname,$id);
       $this->db->update($table,$data);
   }
 
   public function supression($table,$id){
       $this->db->where('id',$id);
+      $this->db->delete($table);
+  }
+  public function delete($table,$id,$idname){
+      $this->db->where($idname,$id);
       $this->db->delete($table);
   }
 /***Requete pour prendre tous les elements du tableau entreprises**/
@@ -40,9 +44,24 @@ class News_model extends CI_Model
         $query = $CI->db->query("SELECT * FROM " . $tableName);
 
         if ($query->num_rows() > 0) {
-            return $query->result(); // Renvoie un tableau d'objets contenant les résultats de la requête
+            return $query->result();
         } else {
-            return array(); // Renvoie un tableau vide si aucune donnée n'est trouvée
+            return array();
+        }
+    }
+    function selectFromTableConditions($tableName, $conditions = array()) {
+        $CI =& get_instance();
+        $query = $CI->db->select('*')
+            ->from($tableName);
+        if (!empty($conditions)) {
+            $query->where($conditions);
+        }
+        $result = $query->get();
+
+        if ($result->num_rows() > 0) {
+            return $result->result();
+        } else {
+            return array();
         }
     }
 
