@@ -58,7 +58,7 @@ class Controller extends CI_Controller {
         $data = $this->news_model->login($email,$password);
         if($data != null){
             if(intval($data['admin']) == 1){
-                $this->session->set_userdata('user', $data);
+                $this->session->set_userdata('admin', $data);
                 redirect(base_url('controller/dashboard'));
             }else {
                 $this->session->set_userdata('user', $data);
@@ -197,5 +197,15 @@ class Controller extends CI_Controller {
         );
         $this->news_model->modification('exercice','idexercice',$id,$data1);
         redirect(base_url('controller/getAllexercice'));
+    }
+
+    public function deconnectAdmin(){
+        $this->session->unset_userdata('admin');
+        redirect(base_url('controller/index'));
+    }
+
+    public function deconnectClient(){
+        $this->session->unset_userdata('user');
+        redirect(base_url('controller/index'));
     }
 }
