@@ -97,23 +97,7 @@ class Controller extends CI_Controller {
    }
 
 /***Fonction de connexion**/
-  public function connection(){
-		$this->load->model('news_model');
-		$table = "USER";
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
-		$data = $this->news_model->login($email,$password);
-        if($data != null){
-            if(intval($data['admin']) == 1){
-                $this->session->set_userdata('user', $data);
-                redirect(base_url('controller/dashboard'));
-            }else {
-                $this->session->set_userdata('user', $data);
-                redirect(base_url('controller/welcome'));
-            }
-        }
-		redirect(base_url('controller/index'));
-	}
+
 
     /***Fonction CRUD regime**/
     public function saveRepas(){
@@ -168,7 +152,7 @@ class Controller extends CI_Controller {
         $this->load->model('news_model');
         $data1 = array(
             'nomrepas' => $this->input->post('nom'),
-            'caloriedepensee' => $this->input->post('dpcalories')
+            'caloriedepensee' => $this->input->post('dpcalories'),
             'NOMEXERCICE' => $this->input->post('nom'),
             'CALORIEDEPENSEE' => $this->input->post('dpcalories')
         );
