@@ -58,7 +58,7 @@ class Controller extends CI_Controller {
         $data = $this->news_model->login($email,$password);
         if($data != null){
             if(intval($data['admin']) == 1){
-                $this->session->set_userdata('user', $data);
+                $this->session->set_userdata('admin', $data);
                 redirect(base_url('controller/dashboard'));
             }else {
                 $this->session->set_userdata('user', $data);
@@ -70,6 +70,7 @@ class Controller extends CI_Controller {
 
 /*** Inscription, Completion, Profil**/
    public function signup(){
+       session_start();
     $this->load->model('news_model');
     $admin = -1;
     $data1 = array(
@@ -81,23 +82,31 @@ class Controller extends CI_Controller {
     );
     $this->news_model->insertion('user',$data1);
     $data = $this->news_model->selectuser($data1['name']);
-    $this->session->set_userdata('user', $data);
+    $_SESSION['user'] = $data;
     redirect(base_url('controller/completer'));
   }
 
 
   public function saveObjectif(){
         $this->load->model('news_model');
+        $this->load->model('verifications');
+        $objectif = $this->input->post('objectif');
+        $cible = $this->input->post('cibles');
+        $poids = $this->input->post('poids');
         $data1 = array(
-            'objectif' => $this->input->post('objectif'),
-            'cible' => $this->input->post('cibles')
+            'objectif' => $objectif,
+            'cible' => $cible
         );
-        $this->news_model->insertion('objectif',$data1);
-        redirect(base_url('controller/welcome'));
+        if($this->verifications->differencePoidscibles($objectif,$cible,$poids)){
+            $this->news_model->insertion('objectif',$data1);
+            redirect(base_url('controller/welcome'));
+        } else {
+            $data1['poids'] = $poids;
+            $data1['erreur'] = "poids non validee";
+            $this->load->view('objectif',$data1);
+        }
+
    }
-
-/***Fonction de connexion**/
-
 
     /***Fonction CRUD regime**/
     public function saveRepas(){
@@ -152,7 +161,7 @@ class Controller extends CI_Controller {
         $this->load->model('news_model');
         $data1 = array(
             'nomrepas' => $this->input->post('nom'),
-            'caloriedepensee' => $this->input->post('dpcalories')
+            'caloriedepensee' => $this->input->post('dpcalories'),
             'NOMEXERCICE' => $this->input->post('nom'),
             'CALORIEDEPENSEE' => $this->input->post('dpcalories')
         );
@@ -189,5 +198,17 @@ class Controller extends CI_Controller {
         );
         $this->news_model->modification('exercice','idexercice',$id,$data1);
         redirect(base_url('controller/getAllexercice'));
+    }
+
+    public function deconnectAdmin(){
+        session_start();
+        unset($_SESSION['admin']);
+        redirect(base_url('controller/index'));
+    }
+
+    public function deconnectClient(){
+        session_start();
+        unset($_SESSION['user']);
+        redirect(base_url('controller/index'));
     }
 }

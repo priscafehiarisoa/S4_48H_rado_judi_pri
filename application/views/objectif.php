@@ -25,7 +25,7 @@ include "inc/root.php"
                     </div>
                     <div class="from-control">
                         <label for="cibles">Poids cible</label>
-                        <input type="number"  class="form-control" name="poids" id="cibles"><br/>
+                        <input type="number"  class="form-control" name="cibles" id="cibles"><br/>
                     </div>
                     <?php if( isset($erreur)){?>
                         <p><?php echo $erreur; ?></p>
