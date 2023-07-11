@@ -50,7 +50,7 @@ include "inc/root.php";
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-capitalize font-weight-bold">nombre de clients</p>
                                     <h5 class="font-weight-bolder mb-0">
-                                        12
+                                        <?php echo $count['nombre']; ?>
                                     </h5>
                                 </div>
                             </div>

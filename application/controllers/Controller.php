@@ -38,6 +38,7 @@ class Controller extends CI_Controller {
         $data = array();
         $data['regime'] = $this->news_model->selectregime();
         $data['prise'] = $this->news_model->selectprise();
+        $data['count'] = $this->news_model->selectCountuser();
         $this->load->view('dashboard',$data);
     }
 
@@ -57,10 +58,10 @@ class Controller extends CI_Controller {
         $password = $this->input->post('password');
         $data = $this->news_model->login($email,$password);
         if($data != null){
-            if(intval($data['admin']) == 1){
+            if(intval($data['ADMIN']) == 1){
                 $this->session->set_userdata('admin', $data);
                 redirect(base_url('controller/dashboard'));
-            }else {
+            }elseif(intval($data['ADMIN']) == -1){
                 $this->session->set_userdata('user', $data);
                 redirect(base_url('controller/welcome'));
             }

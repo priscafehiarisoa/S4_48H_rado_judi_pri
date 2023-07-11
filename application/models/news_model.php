@@ -75,7 +75,6 @@ class News_model extends CI_Model
 
     public function login($email,$password){
         $this->db->select('*');
-        $this->db->from('user');
         $this->db->from('USER');
         $this->db->where('email', $email);
         $this->db->where('password', $password);
@@ -106,6 +105,17 @@ class News_model extends CI_Model
         } else {
             return array();
         }
+    }
+
+    public function selectCountuser()
+    {
+        $admin = -1;
+        $this->db->select('count(name) as nombre');
+        $this->db->from('user');
+        $this->db->where('admin', $admin);
+        $result = $this->db->get();
+        $row = $result->row_array();
+        return $row;
     }
 
 }
