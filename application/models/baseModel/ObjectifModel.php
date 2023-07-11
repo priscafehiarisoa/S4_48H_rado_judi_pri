@@ -7,7 +7,9 @@ class ObjectifModel extends CI_Model
         $this->load->model('UserModel');
         $info = $this->UserModel->getUserInfo($id);
         $poids = $info['poids'];
-
+        $objectif = $this->getObjectifById($id);
+        $poidsCible = $poids + ($objectif['OBJECTIF']*$objectif['CIBLE ']);
+        return $poidsCible*6000;
     }
     public function getObjectifById($id){
         $this->db->select('*');

@@ -30,7 +30,9 @@ class Controller extends CI_Controller {
 
   /***Redirection vers la page profile**/
     public function welcome(){
-  		$this->load->view('welcome_message');
+        $this->load->model("ObjectifModel");
+        $data['calorieCible'] = $this->ObjectifModel->getCalorieCible($_SESSION['user']['iduser']);
+  		$this->load->view('welcome_message',$data);
   	}
 
     public function dashboard(){
@@ -74,6 +76,7 @@ class Controller extends CI_Controller {
             'objectif' => $this->input->post('objectif')
         );
         $this->news_model->insertion('objectif',$data1);
+
         redirect(base_url('controller/welcome'));
    }
 
