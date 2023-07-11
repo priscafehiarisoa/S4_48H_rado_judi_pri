@@ -13,6 +13,7 @@ class Profile extends CI_Controller
     }
 
     function completion_profile(){
+        session_start();
         $age=$this->input->post('age');
         $poids=$this->input->post('poids');
         $taille=$this->input->post('taille');
