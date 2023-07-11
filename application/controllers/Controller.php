@@ -34,7 +34,11 @@ class Controller extends CI_Controller {
   	}
 
     public function dashboard(){
-        $this->load->view('dashboard');
+        $this->load->model('news_model');
+        $data = array();
+        $data['regime'] = $this->news_model->selectregime();
+        $data['prise'] = $this->news_model->selectprise();
+        $this->load->view('dashboard',$data);
     }
 
     public function regimes(){
@@ -135,5 +139,47 @@ class Controller extends CI_Controller {
         );
         $this->news_model->modification('repas','idrepas',$id,$data1);
         redirect(base_url('controller/getAllrepas'));
+    }
+
+    /***Fonction CRUD exercice**/
+    public function saveExercice(){
+        $this->load->model('news_model');
+        $data1 = array(
+            'nom' => $this->input->post('nom'),
+            'depensecalories' => $this->input->post('dpcalories')
+        );
+        $this->news_model->insertion('exercice',$data1);
+        redirect(base_url('controller/getAllexercice'));
+    }
+
+    public function getAllexercice(){
+        $this->load->model('news_model');
+        $data = array();
+        $data['exercice'] = $this->news_model->select('exercice');
+        $this->load->view('exercice',$data);
+    }
+
+    public function modifexercice(){
+        $id = array();
+        $id['idexercice'] = $this->input->get('idexercice');
+        $this->load->view('modifExercice',$id);
+    }
+
+    public function deleteexercice(){
+        $id = $this->input->get('idexercice');
+        $this->load->model('news_model');
+        $this->news_model->supression('exercice','idexercice',$id);
+        redirect(base_url('controller/getAllexercice'));
+    }
+
+    public function changeExercice(){
+        $this->load->model('news_model');
+        $id = $this->input->post('idexercice');
+        $data1 = array(
+            'nom' => $this->input->post('nom'),
+            'depensecalories' => $this->input->post('dpcalories')
+        );
+        $this->news_model->modification('exercice','idexercice',$id,$data1);
+        redirect(base_url('controller/getAllexercice'));
     }
 }

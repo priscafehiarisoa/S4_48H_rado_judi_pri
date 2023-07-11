@@ -24,6 +24,24 @@ class News_model extends CI_Model
       return $result;
     }
 
+    public function selectregime(){
+        $objectif = -1;
+        $this->db->select('*');
+        $this->db->from('objectif');
+        $this->db->where('objectif', $objectif);
+        $result = $this->db->get()->result_array();
+        return $result;
+    }
+
+    public function selectprise(){
+        $objectif = 1;
+        $this->db->select('*');
+        $this->db->from('objectif');
+        $this->db->where('objectif', $objectif);
+        $result = $this->db->get()->result_array();
+        return $result;
+    }
+
     public function login($email,$password){
         $this->db->select('*');
         $this->db->from('users');
