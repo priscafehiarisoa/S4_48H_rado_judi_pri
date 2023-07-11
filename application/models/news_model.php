@@ -16,6 +16,10 @@ class News_model extends CI_Model
       $this->db->where($idname,$id);
       $this->db->delete($table);
   }
+  public function delete($table,$id,$idname){
+      $this->db->where($idname,$id);
+      $this->db->delete($table);
+  }
 /***Requete pour prendre tous les elements du tableau entreprises**/
   public function select($table){
       $this->db->select('*');
@@ -42,9 +46,37 @@ class News_model extends CI_Model
         return $result;
     }
 
+    function selectFromTable($tableName) {
+        $CI =& get_instance();
+        $query = $CI->db->query("SELECT * FROM " . $tableName);
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return array();
+        }
+    }
+    function selectFromTableConditions($tableName, $conditions = array()) {
+        $CI =& get_instance();
+        $query = $CI->db->select('*')
+            ->from($tableName);
+        if (!empty($conditions)) {
+            $query->where($conditions);
+        }
+        $result = $query->get();
+
+        if ($result->num_rows() > 0) {
+            return $result->result();
+        } else {
+            return array();
+        }
+    }
+
+
     public function login($email,$password){
         $this->db->select('*');
         $this->db->from('user');
+        $this->db->from('USER');
         $this->db->where('email', $email);
         $this->db->where('password', $password);
         $result = $this->db->get();
@@ -59,6 +91,21 @@ class News_model extends CI_Model
         $result = $this->db->get();
         $row = $result->row_array();
         return $row;
+    }
+
+    public function selectCodesNonvalides()
+    {
+        $this->db->select('*');
+        $this->db->from('CODEUTILISE');
+        $this->db->join('CODE C', 'C.IDCODE = CODEUTILISE.IDCODE');
+        $this->db->where('CODEUTILISE.IDCODE NOT IN (SELECT IDCODE FROM CODEVALIDEE)', NULL, FALSE);
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return array();
+        }
     }
 
 }

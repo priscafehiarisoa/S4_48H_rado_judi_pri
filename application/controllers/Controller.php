@@ -96,6 +96,25 @@ class Controller extends CI_Controller {
         redirect(base_url('controller/welcome'));
    }
 
+/***Fonction de connexion**/
+  public function connection(){
+		$this->load->model('news_model');
+		$table = "USER";
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+		$data = $this->news_model->login($email,$password);
+        if($data != null){
+            if(intval($data['admin']) == 1){
+                $this->session->set_userdata('user', $data);
+                redirect(base_url('controller/dashboard'));
+            }else {
+                $this->session->set_userdata('user', $data);
+                redirect(base_url('controller/welcome'));
+            }
+        }
+		redirect(base_url('controller/index'));
+	}
+
     /***Fonction CRUD regime**/
     public function saveRepas(){
         $this->load->model('news_model');
@@ -150,6 +169,8 @@ class Controller extends CI_Controller {
         $data1 = array(
             'nomrepas' => $this->input->post('nom'),
             'caloriedepensee' => $this->input->post('dpcalories')
+            'NOMEXERCICE' => $this->input->post('nom'),
+            'CALORIEDEPENSEE' => $this->input->post('dpcalories')
         );
         $this->news_model->insertion('exercice',$data1);
         redirect(base_url('controller/getAllexercice'));
