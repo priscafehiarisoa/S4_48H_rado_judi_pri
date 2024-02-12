@@ -65,7 +65,7 @@ if(!isset($listecodes)){
                                     <span class="text-secondary text-sm font-weight-bold"><?php echo $listecodes[$i]->NAME?></span>
                                 </td>
                                 <td class="align-middle text-center">
-                                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="<?php echo base_url('code/Code/valider_code/'.$listecodes[$i]->IDCODE."/".$listecodes[$i]->IDUSER)?>"><i class="fas fa-check me-2" aria-hidden="true"></i>valider</a>
+                                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="<?php echo base_url('code/Code/valider_code/'.$listecodes[$i]->IDCODE."/".$listecodes[$i]->IDUSER)?>"><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete</a>
                                 </td>
                                 <td class="align-middle text-center">
 
